@@ -539,3 +539,27 @@ Every time a feature is confirmed working on the server:
 3. **Commit the docs** alongside the feature code
 
 This ensures future sessions have full context of what's deployed and working.
+
+---
+
+## Confirmed Feature Log
+
+| Date | Feature | Commit | Notes |
+|------|---------|--------|-------|
+| 2026-03-17 | @Mention in comments | `7d207ff` | Tag team members with `@`, triggers push + email notifications |
+| 2026-03-17 | Link attachments (Task) | `7d207ff` | File + Link buttons in task attachments, PMS Link Attachment doctype |
+| 2026-03-17 | Link attachments (Project) | `880371b` | File + Link buttons in project files tab |
+| 2026-03-17 | Push banner fix | `1181150` | Auto-dismiss for subscribed users, hide if permission denied |
+| 2026-03-17 | Hide cost from developers | `1181150` | Cost section/columns gated by `canViewFinance` in task detail + task report |
+| 2026-03-17 | Check-in timer warning | `e47ccfb` | Shows "Please check in first" banner when starting timer without check-in |
+
+### Pattern: Role-Based UI Visibility
+
+Use `settingsStore.canViewFinance` to gate financial data:
+```vue
+<div v-if="settingsStore.canViewFinance">
+  <!-- Cost, hourly rate, budget info -->
+</div>
+```
+
+Already applied in: ProjectDetailView, ProjectList, TaskDetailView, TaskReportView.
